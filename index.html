@@ -1,0 +1,552 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lenox Library Quest — V1.41</title>
+<style>
+:root{--bg:#f6f2ff;--card:#fff;--ink:#201a2b;--muted:#655d70;--accent:#5b35a5;--accent2:#e8ddff;--ok:#176b4d;--line:#ddd4e8;--shadow:0 12px 30px rgba(38,22,63,.12);--radius:22px;--tap:52px}
+*{box-sizing:border-box}html{font-size:18px}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#efe7ff 0,#faf8ff 28%,#f7f7fb 100%);color:var(--ink);min-height:100vh}button,a{font:inherit}.app{max-width:720px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 16px calc(32px + env(safe-area-inset-bottom))}.topbar{position:sticky;top:0;z-index:10;background:rgba(250,248,255,.94);backdrop-filter:blur(12px);margin:0 -16px 18px;padding:12px 16px;border-bottom:1px solid var(--line)}.toprow{display:flex;gap:10px;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.02em}.teamchip,.modechip{font-size:.8rem;padding:6px 9px;border-radius:999px;background:#fff;border:1px solid var(--line)}.progress{height:8px;background:#e9e3ef;border-radius:99px;overflow:hidden;margin-top:10px}.progress>span{display:block;height:100%;background:var(--accent);width:0;transition:width .35s ease}.screen{display:none}.screen.active{display:block;animation:enter .3s ease}@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.sensory .screen.active{animation:none}.sensory *{scroll-behavior:auto!important}.sensory .progress>span{transition:none}.hero{text-align:center;padding:34px 6px 14px}.octo{font-size:4rem;line-height:1}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.76rem;font-weight:800;color:var(--accent)}h1{font-size:clamp(2rem,9vw,3.25rem);line-height:1;margin:.3em 0}h2{font-size:1.65rem;line-height:1.1;margin:.2em 0 .6em}h3{font-size:1.15rem;margin:1.1em 0 .4em}p{line-height:1.5}.lead{font-size:1.08rem}.bigline{font-size:1.3rem;font-weight:900}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:14px 0;box-shadow:var(--shadow)}.sensory .card{box-shadow:none}.callout{background:var(--accent2);border-left:5px solid var(--accent);padding:16px;border-radius:14px;margin:16px 0}.success{background:#e8f7f0;border-left-color:var(--ok)}.btn{width:100%;min-height:var(--tap);border:0;border-radius:16px;padding:14px 16px;margin:8px 0;font-weight:850;cursor:pointer;background:var(--accent);color:white;text-align:center}.btn.secondary{background:#fff;color:var(--ink);border:2px solid var(--line)}.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}.btn:focus-visible,.choice:focus-visible,a:focus-visible{outline:4px solid #f2b705;outline-offset:3px}.choice{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:15px;padding:14px 15px;margin:9px 0;min-height:var(--tap);cursor:pointer;color:var(--ink)}.choice:hover{border-color:var(--accent)}.choice.correct{border-color:var(--ok);background:#edf9f4}.choice.wrong{border-color:#aa6b00;background:#fff8e8}.hint{display:none;background:#fff8dd;padding:14px;border-radius:14px;margin-top:10px}.hint.show{display:block}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.mini{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:9px 12px;font-weight:750;cursor:pointer}.timer{font-variant-numeric:tabular-nums;font-weight:900}.route{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0}.route div{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}.route .done{opacity:.65}.route .current{border:2px solid var(--accent);font-weight:850}.checklist{padding-left:0;list-style:none}.checklist li{padding:7px 0}.searchstring{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:850;background:#211a2d;color:white;padding:13px;border-radius:12px;overflow-wrap:anywhere}.small{font-size:.86rem;color:var(--muted)}.divider{height:1px;background:var(--line);margin:22px 0}.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.team-btn{min-height:78px;border:2px solid var(--line);border-radius:18px;background:#fff;font-weight:900;font-size:1.05rem;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}.team-btn:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(38,22,63,.12);background:#faf7ff}.team-btn:focus-visible{outline:4px solid #f2b705;outline-offset:3px}.sensory .team-btn:hover{transform:none;box-shadow:none;background:#f7f7f8}.purple{border-color:#7b4bc4}.green{border-color:#2e7d4e}.red{border-color:#b74444}.blue{border-color:#3778b7}.help-purple{background:#7b4bc4!important;color:#fff!important;border-color:#7b4bc4!important}.help-purple:hover{background:#6840a8!important;border-color:#6840a8!important}.external{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}.notice{font-size:.86rem;color:var(--muted);text-align:center}.hidden{display:none!important}.teacher-gate{border:2px dashed var(--accent);background:#fbf8ff}.location{font-size:1.25rem;font-weight:900;padding:18px;background:#211a2d;color:#fff;border-radius:16px}.footer-tools{margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}.global-nav{display:flex;gap:8px;justify-content:space-between;margin:0 0 12px}.global-nav .mini{flex:1;border-radius:12px}.global-nav .restart{color:#7a2631;border-color:#d9b9be}.global-nav .mini:disabled{opacity:.45;cursor:not-allowed}
+/* V1.1 — stronger experience-mode differentiation */
+body.standard{background:radial-gradient(circle at 12% 8%,#e6d7ff 0,transparent 26%),radial-gradient(circle at 88% 22%,#dff7ff 0,transparent 24%),linear-gradient(180deg,#efe7ff 0,#faf8ff 35%,#f7f7fb 100%)}
+.standard .card{box-shadow:0 14px 34px rgba(38,22,63,.15);border-color:#d6c7ea}
+.standard .octo{animation:floaty 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 12px rgba(91,53,165,.18))}
+.standard .hero:after{content:'✦  ·  ✧  ·  ✦';display:block;color:#8b68c8;letter-spacing:.35em;margin-top:14px;animation:twinkle 2.2s ease-in-out infinite}
+.standard .choice:hover,.standard .btn:hover{transform:translateY(-1px)}
+.standard .btn,.standard .choice{transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+.standard .choice:hover{box-shadow:0 6px 18px rgba(38,22,63,.10)}
+.standard .success{animation:pop .28s ease}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+@keyframes twinkle{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes pop{0%{transform:scale(.985);opacity:.5}100%{transform:scale(1);opacity:1}}
+.sensory{background:#f4f4f6}
+.sensory .topbar{background:#f4f4f6;backdrop-filter:none}
+.sensory .card,.sensory .route div,.sensory .choice,.sensory .mini{box-shadow:none;border-radius:10px}
+.sensory .card{border-color:#c9c9cf}
+.sensory .btn{border-radius:10px}
+.sensory .callout{border-radius:8px;background:#f0edf5}
+.sensory .success{background:#edf5f1}
+.sensory .hero{text-align:left;padding-top:20px}
+.sensory .hero .octo{font-size:2.6rem}
+.sensory .hero:after{display:none}
+.sensory .eyebrow{letter-spacing:.07em}
+.sensory .progress{height:5px}
+.sensory .route .current{border-width:2px}
+.listen-panel{position:sticky;top:76px;z-index:8;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0 14px;box-shadow:0 7px 20px rgba(38,22,63,.09)}
+.sensory .listen-panel{position:static;box-shadow:none;border-radius:8px}
+.listen-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.listen-label{font-weight:850;margin-right:auto}.listen-status{font-size:.8rem;color:var(--muted);width:100%}.listen-panel button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 11px;font-weight:750;cursor:pointer}.listen-panel button:disabled{opacity:.45;cursor:not-allowed}
+.mode-preview{padding:16px;border:2px solid var(--line);border-radius:16px;margin:10px 0}.mode-preview.standard-preview{background:linear-gradient(135deg,#f3eaff,#fff);box-shadow:0 9px 22px rgba(38,22,63,.1)}.mode-preview.sensory-preview{background:#f4f4f6;border-radius:8px;box-shadow:none}.mode-preview ul{margin:.5em 0 0;padding-left:1.25em}.mode-preview li{margin:.35em 0}
+@media(min-width:640px){.app{padding-left:28px;padding-right:28px}.topbar{margin-left:-28px;margin-right:-28px;padding-left:28px;padding-right:28px}.card{padding:26px}.route{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+ 
+.first-aid-send{border:2px solid #7b4bc4;background:#fbf8ff}
+.first-aid-send label{display:block;font-weight:900;margin:12px 0 6px}
+.first-aid-send input{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:2px solid #a99ab8;border-radius:12px;background:#fff;color:#211a2d}
+.first-aid-send input:focus{outline:3px solid #dfc6fa;outline-offset:2px;border-color:#7b4bc4}
+.first-aid-status{min-height:1.5em;font-weight:800;margin-top:10px}
+.first-aid-actions{display:grid;gap:10px;margin-top:12px}
+
+/* Research Quest 15-minute timer */
+.research-timer{
+  position:sticky;top:8px;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:0 0 14px;padding:10px 13px;border:2px solid #7b4bc4;
+  border-radius:14px;background:#f7f1fc;color:#2b173e;
+  box-shadow:0 2px 8px rgba(43,23,62,.10)
+}
+.research-timer .timer-label{font-weight:900;font-size:.88rem;letter-spacing:.02em}
+.research-timer .timer-value{font-weight:1000;font-size:1.25rem;min-width:4.2rem;text-align:right}
+.research-timer.timer-low{border-color:#9a5a00;background:#fff6df;color:#5b3600}
+.research-timer.timer-done{border-color:#6b6470;background:#f2f0f3;color:#3f3943}
+.sensory .research-timer{box-shadow:none}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <header class="topbar hidden" id="topbar">
+    <div class="toprow"><div class="brand">🐙 Lenox Quest</div><div><span class="teamchip" id="teamChip"></span> <span class="modechip" id="modeChip"></span></div></div>
+    <div class="progress" aria-label="Quest progress"><span id="progressBar"></span></div>
+  </header>
+  <section id="screen" class="screen active" aria-live="polite"></section>
+</main>
+<script>
+/* LENOX LIBRARY QUEST — V1.6
+   External URLs and final octopus locations are intentionally centralized here.
+   Replace the placeholder URLs/locations after final verification; no game logic needs to change. */
+const CONFIG={
+  exploreMinutes:10,
+  urls:{
+    libraryHome:'https://www.uww.edu/library',
+    guides:'https://libguides.uww.edu/',
+    appointment:'https://uww.navigate.eab.com/app/#/authentication/remote/',
+    librarySearch:'https://www.uww.edu/library',
+    scholar:'https://scholar.google.com/'
+  },
+  locations:{
+    Purple:'[PURPLE TEAM LOCATION — replace with exact student-facing direction]',
+    Green:'[GREEN TEAM LOCATION — replace with exact student-facing direction]',
+    Red:'[RED TEAM LOCATION — replace with exact student-facing direction]',
+    Blue:'[BLUE TEAM LOCATION — replace with exact student-facing direction]'
+  }
+};
+const FIRST_AID_EMAIL_ENDPOINT='https://script.google.com/macros/s/AKfycbxIyrGWy98MV_Xm--IZG9WFzTkPshWlaDihvbZRXyY-4iV9tvfmUceQbKA401XeOE7BdA/exec';
+const ROUTES={
+ Purple:['tech','ask','guides','camille'],
+ Green:['ask','guides','camille','tech'],
+ Red:['guides','camille','tech','ask'],
+ Blue:['camille','tech','ask','guides']
+};
+const LABELS={tech:'🎒 Hidden Tech',ask:'💬 24/7 Help',guides:'📖 Guides',camille:'👤 Find Camille'};
+const fresh={mode:null,team:null,phase:'welcome',exploreIndex:0,exploreDone:[],exploreEnds:null,researchStep:0,finalStep:0,cardChecked:false,huntFound:false};
+let state=Object.assign({},fresh,JSON.parse(localStorage.getItem('lenoxQuestV1')||'{}'));
+let navHistory=JSON.parse(localStorage.getItem('lenoxQuestHistoryV1')||'[]');
+let timerHandle=null;
+const screen=document.getElementById('screen'), topbar=document.getElementById('topbar');
+function save(){localStorage.setItem('lenoxQuestV1',JSON.stringify(state));localStorage.setItem('lenoxQuestHistoryV1',JSON.stringify(navHistory))}
+function snapshot(){return JSON.parse(JSON.stringify(state))}
+function pushHistory(){navHistory.push(snapshot());if(navHistory.length>60)navHistory.shift();save()}
+function setState(p){pushHistory();Object.assign(state,p);save();render()}
+function goBack(){if(!navHistory.length)return;stopReading(false);state=Object.assign({},fresh,navHistory.pop());save();render()}
+function globalNav(){if(state.phase==='welcome')return '';return `<nav class="global-nav" aria-label="Quest navigation"><button class="mini" onclick="goBack()" ${navHistory.length?'':'disabled'}>← Back</button><button class="mini restart" onclick="resetQuest()">↻ Restart</button></nav>`}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function btn(label,fn,cls=''){return `<button class="btn ${cls}" onclick="${fn}">${label}</button>`}
+function readTools(){return `${globalNav()}<div class="listen-panel" aria-label="Read aloud controls"><div class="listen-row"><span class="listen-label">🔊 Read this screen aloud</span><button onclick="startReading()" id="playRead">▶ Read</button><button onclick="pauseReading()" id="pauseRead" disabled>⏸ Pause</button><button onclick="stopReading()" id="stopRead" disabled>⏹ Stop</button><span class="listen-status" id="listenStatus" aria-live="polite">Audio is off. Start it whenever you want.</span></div></div><div class="toolbar"><button class="mini" onclick="toggleMode()">◐ Switch display mode</button></div>`}
+function shell(html,progress=0,read=true){stopReading(false);readAloudActive=false;topbar.classList.remove('hidden');document.body.classList.toggle('sensory',state.mode==='Sensory-Friendly');document.body.classList.toggle('standard',state.mode==='Standard');document.getElementById('teamChip').textContent=state.team?state.team+' Team':'';document.getElementById('modeChip').textContent=state.mode||'';document.getElementById('progressBar').style.width=progress+'%';screen.innerHTML=(read?readTools():'')+html;window.scrollTo(0,0)}
+function simple(html){stopReading(false);readAloudActive=false;topbar.classList.add('hidden');document.body.classList.toggle('sensory',state.mode==='Sensory-Friendly');document.body.classList.toggle('standard',state.mode==='Standard');screen.innerHTML=globalNav()+html;window.scrollTo(0,0)}
+function stripEmojiForSpeech(t){
+  return Array.from(t).filter(ch=>{
+    const cp=ch.codePointAt(0);
+    return !((cp>=0x1F000&&cp<=0x1FAFF)||(cp>=0x2600&&cp<=0x27BF)||cp===0xFE0E||cp===0xFE0F||cp===0x200D);
+  }).join('');
+}
+function naturalizeSpeech(t){
+  t=t
+    .replace(/\bhalf[-–—]sheet\b/gi,'half sheet')
+    .replace(/\bone[-–—]on[-–—]one\b/gi,'individual')
+    .replace(/\bI[\s.-]+T\b/g,'it')
+    .replace(/\bO[\s.-]+R\b/g,'or')
+    .replace(/\bIT\b/g,'it')
+    .replace(/\bOR\b/g,'or');
+  return stripEmojiForSpeech(t)
+    .replace(/\bUWW\b/g,'U W W')
+    .replace(/\b3D\b/gi,'three D')
+    .replace(/\b24\/7\b/g,'twenty four seven')
+    .replace(/\bAPA\b/g,'A P A')
+    .replace(/\bMLA\b/g,'M L A')
+    .replace(/\bASA\b/g,'A S A')
+    .replace(/\bTurabian\b/g,'Turabian')
+    .replace(/\bAND\b/g,'AND, in all capital letters')
+    .replace(/\s*\+\s*/g,' and ')
+    .replace(/[→←↺↻]/g,' ')
+    .replace(/[|]/g,', ')
+    .replace(/[()[\]{}]/g,' ')
+    .replace(/[_*#]/g,' ')
+    .replace(/\s*[.:;!?]+\s*/g,', ')
+    .replace(/\s*\/\s*/g,' ')
+    .replace(/\s*[-–—]\s*/g,', ')
+    .replace(/,+/g,',')
+    .replace(/\s+,/g,',')
+    .replace(/\s+/g,' ')
+    .replace(/^[,\s]+|[,\s]+$/g,'')
+    .trim();
+}
+function readableText(){
+  const parts=[];
+  const spoken=new Set();
+
+  function isActuallyVisible(el){
+    if(!el || !el.isConnected)return false;
+    if(el.closest('.hidden,[aria-hidden="true"],template'))return false;
+    let node=el;
+    while(node && node!==screen){
+      const cs=window.getComputedStyle(node);
+      if(cs.display==='none' || cs.visibility==='hidden' || cs.visibility==='collapse' || parseFloat(cs.opacity)===0)return false;
+      node=node.parentElement;
+    }
+    return true;
+  }
+
+  // Read only currently displayed semantic content. Future Guides stages are
+  // not in the DOM at all; this visibility check is an additional safeguard.
+  const selector='h1,h2,h3,.eyebrow,.lead,p,li,.searchstring,.callout,button.choice';
+  screen.querySelectorAll(selector).forEach(el=>{
+    if(!isActuallyVisible(el))return;
+    if(el.closest('.listen-panel,.toolbar,.notice,.global-nav,.progress,.timer,.route,.footer-tools'))return;
+    if(el.matches('.external,.btn,.mini') && !el.matches('button.choice'))return;
+
+    const parentSemantic=el.parentElement && el.parentElement.closest(selector);
+    if(parentSemantic && parentSemantic!==el && isActuallyVisible(parentSemantic))return;
+
+    const raw=(el.innerText||el.textContent||'').trim();
+    const cleaned=naturalizeSpeech(raw);
+    if(!cleaned || spoken.has(cleaned))return;
+    spoken.add(cleaned);
+
+    // Multiple-choice answers need a noticeably longer pause so TTS does not
+    // merge adjacent options (especially APA / MLA / Turabian / ASA).
+    if(el.matches('button.choice')){
+      parts.push(cleaned+'.   ...   ');
+    }else{
+      parts.push((/[.!?]$/.test(cleaned)?cleaned:cleaned+'.')+'  ');
+    }
+  });
+
+  return parts.join(' ');
+}
+let readAloudActive=false;
+let activeUtterance=null;
+let selectedSpeechVoice=null;
+
+function chooseSpeechVoice(){
+  if(!('speechSynthesis' in window))return null;
+  const voices=window.speechSynthesis.getVoices()||[];
+  if(!voices.length)return null;
+  const english=voices.filter(v=>/^en([-_]|$)/i.test(v.lang||''));
+  const preferred=[
+    /Enhanced/i,/Premium/i,/Natural/i,
+    /Microsoft.*Aria/i,/Microsoft.*Jenny/i,
+    /Google.*English.*US/i,/Google.*English/i,
+    /Samantha/i,/Ava/i,/Allison/i,/Susan/i,/Karen/i,/Moira/i
+  ];
+  for(const rx of preferred){
+    const hit=english.find(v=>rx.test(v.name||''));
+    if(hit)return hit;
+  }
+  return english.find(v=>v.default)||english[0]||voices.find(v=>v.default)||voices[0]||null;
+}
+
+function refreshSpeechVoice(){
+  selectedSpeechVoice=chooseSpeechVoice();
+}
+
+if('speechSynthesis' in window){
+  refreshSpeechVoice();
+  if('onvoiceschanged' in speechSynthesis){
+    speechSynthesis.onvoiceschanged=refreshSpeechVoice;
+  }
+}
+
+function setListenUI(status,playing=false,paused=false){
+  const st=document.getElementById('listenStatus');
+  const play=document.getElementById('playRead');
+  const pause=document.getElementById('pauseRead');
+  const stop=document.getElementById('stopRead');
+  if(st)st.textContent=status;
+  if(play)play.disabled=playing&&!paused;
+  if(pause){
+    pause.disabled=!playing;
+    pause.textContent=paused?'▶ Resume':'⏸ Pause';
+  }
+  if(stop)stop.disabled=!playing;
+}
+
+function startReading(){
+  if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){
+    setListenUI('Read aloud is not supported in this browser.');
+    return;
+  }
+
+  readAloudActive=true;
+
+  if(speechSynthesis.paused && activeUtterance){
+    speechSynthesis.resume();
+    setListenUI('Reading this screen aloud…',true,false);
+    return;
+  }
+
+  const t=readableText();
+  if(!t){
+    setListenUI('There is nothing to read on this screen.');
+    return;
+  }
+
+  speechSynthesis.cancel();
+  refreshSpeechVoice();
+
+  const utterance=new SpeechSynthesisUtterance(t);
+  activeUtterance=utterance;
+  if(selectedSpeechVoice)utterance.voice=selectedSpeechVoice;
+  utterance.lang=(selectedSpeechVoice&&selectedSpeechVoice.lang)||'en-US';
+  utterance.rate=.92;
+  utterance.pitch=1;
+  utterance.volume=1;
+
+  utterance.onstart=()=>{
+    if(activeUtterance===utterance)setListenUI('Reading this screen aloud…',true,false);
+  };
+  utterance.onend=()=>{
+    if(activeUtterance===utterance){
+      activeUtterance=null;
+      setListenUI('Finished reading. You can read it again anytime.');
+    }
+  };
+  utterance.onerror=(event)=>{
+    if(activeUtterance===utterance){
+      activeUtterance=null;
+      const harmless=event&&event.error==='canceled';
+      if(!harmless)setListenUI('Read aloud stopped. Tap Read to try again.');
+    }
+  };
+
+  // A direct call from the user's tap is the most reliable pattern on mobile browsers.
+  speechSynthesis.speak(utterance);
+}
+
+function speakNewFeedback(feedbackEl){
+  if(!readAloudActive || !feedbackEl || !('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window))return;
+  const speechClone=feedbackEl.cloneNode(true);
+  speechClone.querySelectorAll('strong,h1,h2,h3,p,li').forEach(el=>el.appendChild(document.createTextNode(' || ')));
+  const spoken=(speechClone.innerText||speechClone.textContent||'')
+    .split('||')
+    .map(part=>naturalizeSpeech(part))
+    .filter(Boolean)
+    .map(part=>/[.!?]$/.test(part)?part:part+'.')
+    .join('   ...   ');
+  if(!spoken)return;
+
+  speechSynthesis.cancel();
+  refreshSpeechVoice();
+
+  const utterance=new SpeechSynthesisUtterance(spoken);
+  activeUtterance=utterance;
+  if(selectedSpeechVoice)utterance.voice=selectedSpeechVoice;
+  utterance.lang=(selectedSpeechVoice&&selectedSpeechVoice.lang)||'en-US';
+  utterance.rate=.92;
+  utterance.pitch=1;
+  utterance.volume=1;
+
+  utterance.onstart=()=>{
+    if(activeUtterance===utterance)setListenUI('Reading new feedback aloud…',true,false);
+  };
+  utterance.onend=()=>{
+    if(activeUtterance===utterance){
+      activeUtterance=null;
+      setListenUI('Feedback finished. Read Aloud is still on.');
+    }
+  };
+  utterance.onerror=(event)=>{
+    if(activeUtterance===utterance){
+      activeUtterance=null;
+      const harmless=event&&event.error==='canceled';
+      if(!harmless)setListenUI('Read aloud stopped. Tap Read to try again.');
+    }
+  };
+  speechSynthesis.speak(utterance);
+}
+
+function pauseReading(){
+  if(!('speechSynthesis' in window)||!activeUtterance)return;
+  if(speechSynthesis.paused){
+    speechSynthesis.resume();
+    setListenUI('Reading this screen aloud…',true,false);
+  }else{
+    speechSynthesis.pause();
+    setListenUI('Reading paused.',true,true);
+  }
+}
+
+function stopReading(update=true){
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  activeUtterance=null;
+  if(update)setListenUI('Reading stopped. Start again whenever you want.');
+}
+function toggleMode(){stopReading(false);state.mode=state.mode==='Standard'?'Sensory-Friendly':'Standard';save();render()}
+function resetQuest(){if(confirm('Restart the entire Quest? This will clear your team, mode, timer, and all Quest progress on this device.')){localStorage.removeItem('lenoxQuestV1');localStorage.removeItem('lenoxQuestHistoryV1');navHistory=[];state=Object.assign({},fresh);render()}}
+function welcome(){simple(`<div class="hero"><div class="octo">🐙</div><div class="eyebrow">Lenox Library</div><h1>LIBRARY QUEST</h1><p class="lead">Explore Lenox. Complete the challenges. Use the library for real.</p><div class="callout"><p>Somewhere in this library...</p><p class="bigline">an octopus is waiting for you.</p></div>${btn('BEGIN QUEST →',"setState({phase:'mode'})")}<p class="notice">No login. No grades. Work together.</p></div>`)}
+function mode(){simple(`<div class="hero"><div class="octo">🐙</div><h1>Choose your Quest experience.</h1></div><div class="mode-preview standard-preview"><strong>🎮 STANDARD</strong><ul><li>More animation and playful visual feedback</li><li>Celebration effects and surprise reveals</li><li>Same tasks and information</li></ul><button class="btn" onclick="setState({mode:'Standard',phase:'team'})">CHOOSE STANDARD →</button></div><div class="mode-preview sensory-preview"><strong>◯ SENSORY-FRIENDLY</strong><ul><li>No decorative motion</li><li>Flatter, quieter screens with fewer visual effects</li><li>More predictable presentation</li></ul><button class="btn secondary" onclick="setState({mode:'Sensory-Friendly',phase:'team'})">CHOOSE SENSORY-FRIENDLY →</button></div><p class="small"><strong>Same missions. Same answers. Same Quest.</strong> You can switch at any time without losing progress.</p>`)}
+function team(){simple(`<div class="hero"><div class="eyebrow">Choose your team</div><h1>Who are you questing with?</h1></div><div class="team-grid"><button class="team-btn purple" onclick="chooseTeam('Purple')">🟣 Purple</button><button class="team-btn green" onclick="chooseTeam('Green')">🟢 Green</button><button class="team-btn red" onclick="chooseTeam('Red')">🔴 Red</button><button class="team-btn blue" onclick="chooseTeam('Blue')">🔵 Blue</button></div>`)}
+function chooseTeam(t){pushHistory();state.team=t;state.phase='rules';save();render()}
+function rules(){shell(`<div class="eyebrow">Before you begin</div><h1>Quest Rules</h1><div class="card"><p>📱 Follow the missions.</p><p>👥 Work together.</p><p>🔎 Use Lenox and its tools for real.</p><p>💡 Stuck? Use a hint or ask for help.</p></div><div class="callout"><strong>No penalties.</strong> You don't have to know everything already.</div>${btn('START EXPLORE →','startExplore()')}<div class="footer-tools"><button class="mini" onclick="resetQuest()">↺ Start over</button></div>`,3)}
+function startExplore(){pushHistory();if(!state.exploreEnds)state.exploreEnds=Date.now()+CONFIG.exploreMinutes*60000;state.phase='explore';save();render()}
+function timeLeft(){return Math.max(0,(state.exploreEnds||0)-Date.now())}
+function timerText(){let ms=timeLeft(),m=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000);return `${m}:${String(s).padStart(2,'0')}`}
+function routePanel(){let r=ROUTES[state.team];return `<div class="route">${r.map((x,i)=>`<div class="${i<state.exploreIndex?'done':i===state.exploreIndex?'current':''}">${i<state.exploreIndex?'✓':i===state.exploreIndex?'→':'○'} ${LABELS[x]}</div>`).join('')}</div>`}
+function explore(){if(timeLeft()<=0){state.phase='return';state.returnReason='time';save();return render()}let r=ROUTES[state.team],key=r[state.exploreIndex];if(!key){state.phase='return';state.returnReason='complete';save();return render()}shell(`<div class="toprow"><div><div class="eyebrow">Explore Lenox</div><strong>${state.exploreIndex+1} of 4 missions</strong></div><div class="timer" id="timer">⏱ ${timerText()}</div></div>${routePanel()}${mission(key)}`,8+state.exploreIndex*8);clearInterval(timerHandle);timerHandle=setInterval(()=>{let e=document.getElementById('timer');if(!e)return clearInterval(timerHandle);let ms=timeLeft();e.textContent='⏱ '+timerText();if(ms<=0){clearInterval(timerHandle);state.phase='return';state.returnReason='time';save();render()}},1000)}
+function mission(k){if(k==='tech')return `<div class="card"><div class="eyebrow">Mission</div><h2>🎒 Hidden Tech</h2><p>Go to the <strong>front desk</strong> and locate the sign showing what technology students can check out.</p><div class="callout"><strong>OR:</strong> Ask the student assistant what technology you can check out. Asking a person counts.</div><h3>Which of these can students check out from Lenox?</h3>${mc(['VR headsets','Video games','Calculators','Webcams and USB drives','All of the above'],4,`<div class="callout success"><strong>🤯 ALL OF THE ABOVE</strong><p>And Lenox has something else you might not expect:</p><p class="bigline">🔭 A TELESCOPE.</p><p>Students can borrow that too.</p><strong>✓ HIDDEN TECH FOUND</strong><p>Before buying something—or assuming you don't have the equipment you need—check with Lenox.</p></div>${completeMissionBtn()}`,'tech')}</div>`;
+if(k==='ask')return `<div class="card"><div class="eyebrow">Mission</div><h2>💬 24/7 Help</h2><p>Go to the library home page. Find the green <strong>Ask a Librarian</strong> button at the bottom and open it.</p><a class="btn external" href="${CONFIG.urls.libraryHome}" onclick="save()">OPEN LIBRARY WEBSITE →</a><h3>What information do you need to include to get 24/7 research support from a <em>real (human) librarian</em>?</h3>${mc(['Name + student ID','Name + phone number','Name + email + your question','Email + course number'],2,`<div class="callout success"><strong>✓ YOU FOUND A REAL HUMAN</strong><p>Name + email + your question.</p><p>Academic librarians are available through chat 24/7 to help with research.</p></div><div class="divider"></div><h3>One more thing...</h3><p>Go back to the Libraries homepage. Open <strong>any other page</strong> linked from it.</p><p><strong>Is the green Ask a Librarian button available there too?</strong></p>${yesNoAsk()}`,'ask1')}</div>`;
+if(k==='guides')return `<div class="card"><div class="eyebrow">Mission</div><h2>📖 Research & Citation Guides</h2><p>From the library homepage, open <strong>Research, Citation, & Class Guides</strong>.</p><a class="btn external" href="${CONFIG.urls.guides}" onclick="save()">OPEN GUIDES →</a><h3>Which of these subjects has a research guide?</h3>${mc(['Sociology','Psychology','Art & Design','All of the above'],3,`<div class="callout success"><strong>✓ SUBJECT GUIDES FOUND</strong><p>Guides can give you a starting place for researching a subject.</p></div><h3>🎓 Find your field</h3><p>Find and open a research guide related to <strong>your major</strong> or an area you're interested in studying.</p><button class="btn secondary" onclick="showGuideStage2()">I FOUND ONE ✓</button><button class="btn secondary" onclick="showGuideHelp()">I COULDN'T FIND ONE</button><div id="guideNext"></div>`,'guides1')}</div>`;
+return `<div class="card"><div class="eyebrow">Mission</div><h2>👤 Need More Help?</h2><h3>True or False?</h3><p>You can schedule an individual appointment with Camille when you need research help.</p><button class="choice" onclick="camilleReveal()">TRUE</button><button class="choice" onclick="camilleReveal()">FALSE</button><div id="camilleReveal"></div></div>`}
+function showGuideHelp(){let fb=document.getElementById('guideNext');fb.innerHTML=`<div class="callout"><strong>THAT'S OKAY — ASK CAMILLE</strong><p>Ask Camille for help finding a guide that fits what you're studying.</p><p>If a guide hasn't been created yet, you can also ask Camille about creating one.</p></div><button class="btn secondary" onclick="showGuideStage2()">CONTINUE →</button>`;speakNewFeedback(fb)}
+function showGuideStage2(){let fb=document.getElementById('guideNext');fb.innerHTML=`<h3>Under Library Basics, which can you find help with?</h3>${mc(['Search Strategies','How to Find Ebooks','Interlibrary Loan','Citation Guides','All of the above'],4,`<div class="callout"><strong>You don't have to remember how to do all of those things today.</strong><p>Remember where the help lives.</p></div><button class="btn secondary" onclick="showGuideStage3()">CONTINUE →</button><div id="guideNext3"></div>`,'guides2')}`;speakNewFeedback(fb)}
+function showGuideStage3(){let fb=document.getElementById('guideNext3');fb.innerHTML=`<h3>✏️ Why do we cite sources?</h3>${mc(['Because citations make a paper look more academic','Because professors like long bibliographies','To give credit, show where information came from, and avoid plagiarism','Because every sentence needs a citation'],2,`<div class="callout success"><strong>✓ EXACTLY</strong><p>Citations give credit and help readers see where information came from.</p></div><button class="btn secondary" onclick="showGuideStage4()">CONTINUE →</button><div id="guideNext4"></div>`,'guides3')}`;speakNewFeedback(fb)}
+function showGuideStage4(){let fb=document.getElementById('guideNext4');fb.innerHTML=`<h3>Which does NOT have its own UWW citation guide here?</h3>${mc(['APA','MLA','Turabian','ASA'],3,`<div class="callout success"><strong>✓ CITATION HELP FOUND</strong><p>APA · MLA · Turabian</p><p>You can also find citation guides at the Lenox front desk.</p><strong>You don't have to memorize every citation rule. You need to know where to find help.</strong></div>${completeMissionBtn()}`,'guides4')}`;speakNewFeedback(fb)}
+function mc(opts,correct,after,id){return `<div id="mc-${id}">${opts.map((o,i)=>`<button class="choice" onclick="answer('${id}',${i},${correct})">${esc(o)}</button>`).join('')}<div id="fb-${id}"></div><template id="after-${id}">${after}</template></div>`}
+function showAnswerHint(btn){let fb=btn.parentElement;fb.innerHTML='💡 Carefully scan the page, sign, or resource in front of you for the answer. If you are still stuck, ask Camille or a student assistant for help.';speakNewFeedback(fb)}
+function answer(id,i,c){let box=document.getElementById('mc-'+id),buttons=box.querySelectorAll(':scope > .choice'),fb=document.getElementById('fb-'+id);buttons.forEach(x=>x.classList.remove('wrong'));if(i===c){buttons[i].classList.add('correct');buttons.forEach(x=>x.disabled=true);fb.innerHTML=document.getElementById('after-'+id).innerHTML}else{buttons[i].classList.add('wrong');fb.innerHTML=`<div class="callout"><strong>Not quite yet.</strong> Take another look at what you found. <button class="mini" onclick="showAnswerHint(this)">SHOW ME A HINT</button></div>`}speakNewFeedback(fb)}
+function yesNoAsk(){return `<button class="choice" onclick="askEvery(true)">YES</button><button class="choice" onclick="askEvery(false)">NO</button><div id="askEvery"></div>`}
+function askEvery(v){let fb=document.getElementById('askEvery');fb.innerHTML=v?`<div class="callout success"><strong>✓ YES</strong><p>Research help follows you around the library website.</p><p>If you get stuck, look for the green Ask a Librarian button. <strong>Real librarian. Real research help. 24/7.</strong></p></div>${completeMissionBtn()}`:`<div class="callout"><strong>Take another look.</strong><p>Check the bottom of the page you opened.</p></div>`;speakNewFeedback(fb)}
+function camilleReveal(){let fb=document.getElementById('camilleReveal');fb.innerHTML=`<div class="callout success"><strong>🐙 SURPRISE — IT'S TRUE!</strong><p>Camille can help you figure out where to start, choose search terms, find books and articles, evaluate sources, work on citations, or simply get unstuck.</p><p><strong>You don't need to have everything figured out before you ask for help.</strong></p></div><h3>📅 NEED MORE HELP?</h3><p>You can schedule an individual research appointment with Camille.</p><p><strong>Find the QR code on your handout</strong> for scheduling research help.</p><p>You don't have to have your research figured out before you make an appointment.</p><p><strong>Do you know where to find the QR code if you need help later?</strong></p><button class="btn secondary" onclick="showCamilleDone()">✓ YES — I FOUND THE QR CODE</button><button class="btn secondary" onclick="showCamilleQRHint()">NOT YET — SHOW ME WHERE</button><div id="camilleDone"></div>`;speakNewFeedback(fb)}
+function showCamilleQRHint(){let fb=document.getElementById('camilleDone');fb.innerHTML=`<div class="callout"><strong>LOOK AT YOUR HALF-SHEET</strong><p>Find the QR code for scheduling research help with Camille. It is on the handout you received for today's Library Quest.</p><p>Once you find it, you will know where to go when you want research help later.</p></div><button class="btn secondary" onclick="showCamilleDone()">✓ I FOUND THE QR CODE</button>`;speakNewFeedback(fb)}
+function showCamilleDone(){let fb=document.getElementById('camilleDone');fb.innerHTML=`<div class="callout success"><strong>✓ YOU KNOW WHERE TO GO</strong><p>Scan the QR code on your handout anytime you want to schedule research help with Camille.</p></div>${completeMissionBtn()}`;speakNewFeedback(fb)}
+function showBlock(id){let fb=document.getElementById(id);fb.classList.remove('hidden');speakNewFeedback(fb)}
+function completeMissionBtn(){let route=ROUTES[state.team]||[],next=route[state.exploreIndex+1];let label=next?`NEXT: ${LABELS[next]} →`:'FINISH EXPLORE →';return `<div class="divider"></div><div class="callout"><strong>✓ MISSION COMPLETE</strong><p>${next?`Next up: <strong>${LABELS[next]}</strong>`:'You finished all four Explore missions.'}</p></div>${btn(label,'completeExploreMission()')}`}
+function completeExploreMission(){pushHistory();let k=ROUTES[state.team][state.exploreIndex];if(!state.exploreDone.includes(k))state.exploreDone.push(k);state.exploreIndex++;save();render()}
+function returnBase(){let complete=state.returnReason==='complete';shell(`<div class="hero"><div class="octo">${complete?'🗺️':'⏰'}</div><div class="eyebrow">${complete?'Explore complete':'Explore time is up'}</div><h1>🐙 RETURN TO BASE</h1><p class="lead">Head back to your seat.</p><div class="callout"><p class="bigline">Put your phone face down.</p><p>${complete?'Camille has your next challenge.':`It's okay if you didn't finish every Explore mission.`}</p></div><h2>🔎 Next: Research Quest</h2><p>After the mini lesson, Camille will tell you when to continue.</p>${btn('START RESEARCH QUEST →',"setState({phase:'research',researchStep:0})")}<p class="notice">This button isn't locked. Wait for Camille's cue.</p>`,40)}
+const researchScreens=[
+()=>`<div class="eyebrow">Research Quest</div><h1>🐙 Communication</h1><p class="lead">You learned how to find what you're specifically looking for. Now it's your turn.</p><div class="callout">👥 <strong>TEAM TIP:</strong> One teammate can keep the Quest open while another searches. One phone works too.</div><div class="card"><h2>How do octopuses communicate?</h2><h3>Which search pulls out the most important terms from the question?</h3>${rqmc(['how do octopuses communicate','octopus + communication','how + communicate','octopuses + do'],1,`<strong>Good searches focus on the most important terms.</strong><br><br>Here, those terms are <strong>octopus</strong> and <strong>communication</strong>. Leaving out extra words like <em>how</em> and <em>do</em> can help prevent irrelevant results from getting in the way.`)}</div>`,
+()=>`<div class="eyebrow">Communication · 2</div><h1>Adjust Your Search</h1><div class="card"><p>Your first search doesn't find what you need.</p><h3>What should you try next?</h3>${rqmc(['Give up on the topic','Try a different word for one of your main ideas','Add lots more words to the search','Turn the question into a longer sentence'],1,`<strong>✓ TRY ANOTHER WORD</strong><br><br>Different authors may use different words for the same idea. If a search isn't working, change <strong>one important search term</strong> and try again.<br><br>For example, research about how animals communicate might use words such as <strong>communication, signals, or behavior</strong>.<br><br><strong>SEARCH → LOOK → ADJUST</strong>`)}</div>`,
+()=>`<div class="eyebrow">Communication · 3</div><h1>Connect the ideas</h1><div class="card"><h3>Which is the strongest search?</h3>${rqmc(['how do octopuses communicate','octopus communication','octopus AND communication','octopus + communication'],2,`Connect different ideas with <strong>AND</strong>.<br><strong>AND tells the search to find sources that include both ideas.</strong><div class="searchstring">octopus AND communication</div><p>= sources that include <strong>octopus</strong> and <strong>communication</strong></p><strong>SEARCH → LOOK → ADJUST</strong>`)}</div>`,
+()=>`<div class="eyebrow">Use the real library</div><h1>📄 Find an Article</h1><div class="card"><p>Search:</p><div class="searchstring">octopus AND communication</div><button class="btn secondary" onclick="copyText('octopus AND communication',this)">📋 COPY SEARCH</button><p>Your professor wants an <strong>ARTICLE</strong>.</p><div class="callout"><strong>Add the Resource Type filter → select Articles</strong></div><p>Find one article that looks useful.</p><p>✏️ Write the <strong>ARTICLE TITLE</strong> on your Research Quest Card.</p><a class="btn external" href="${CONFIG.urls.librarySearch}" onclick="save()">OPEN UWW LIBRARY SEARCH →</a>${rqContinue('ARTICLE TITLE IS ON OUR CARD')}<button class="btn secondary help-purple" onclick="showLibraryArticleHelp(this)">CAN'T FIND A USEFUL ARTICLE</button><div id="libraryArticleHelp"></div></div>`,
+()=>`<div class="eyebrow">Same topic · different source</div><h1>📚 Now Find a Book</h1><div class="card"><p>Your topic did not change. Your professor now wants a <strong>BOOK</strong>.</p><h3>What should you change?</h3>${rqmc(['Add the word book to the search','Add a Resource Type filter → Books','Start with a completely new topic','Switch to image search'],1,`<strong>Exactly.</strong><br><br>🔑 Keywords = <strong>WHAT ABOUT?</strong><br>📦 Resource Type = <strong>WHAT KIND?</strong>`)}</div>`,
+()=>`<div class="eyebrow">Use the real library</div><h1>📚 Book + Call Number</h1><div class="card"><p>Find a useful book available at Rock. Open its record.</p><p>On your Quest Card, write:</p><ul class="checklist"><li>📚 <strong>BOOK TITLE</strong></li><li>🔢 <strong>CALL NUMBER</strong></li></ul><div class="callout"><strong>A call number tells you where a book belongs.</strong><p>You can use it yourself—or show it to Camille or student staff and ask for help.</p></div><a class="btn external" href="${CONFIG.urls.librarySearch}" onclick="save()">OPEN UWW LIBRARY SEARCH →</a>${rqContinue('BOOK + CALL NUMBER ARE ON OUR CARD')}<button class="btn secondary help-purple" onclick="showBookHelp(this)">CAN'T FIND A BOOK OR CALL NUMBER</button><div id="bookHelp"></div></div>`,
+()=>`<div class="eyebrow">New research question</div><h1>🧠 Build Your Search</h1><div class="card"><h2>How do octopuses solve problems?</h2><p>This time, you get less help.</p><h3>Which academic term could help you search for research about problem solving and thinking?</h3>${rqmc(['cognition','conversation','camouflage','citation'],0,`<strong>Cognition</strong> is a useful research term for thinking and problem-solving processes.`)}</div>`,
+()=>`<div class="eyebrow">Cognition · Google Scholar</div><h1>🎓 Build the Search</h1><div class="card"><h3>Which search would you try?</h3>${rqmc(['octopus AND cognition','how do octopuses solve problems','octopus OR cognition','cognition book article'],0,`You've transferred the same strategy to a new question.<br><br><strong>octopus AND cognition</strong>`)}</div>`,
+()=>`<div class="eyebrow">Use the real tool</div><h1>🎓 Google Scholar</h1><div class="card"><p>Search:</p><div class="searchstring">octopus AND cognition</div><button class="btn secondary" onclick="copyText('octopus AND cognition',this)">📋 COPY SEARCH</button><p>Find one article that looks useful for answering:</p><p><strong>How do octopuses solve problems?</strong></p><p>✏️ Write the <strong>ARTICLE TITLE</strong> on your Quest Card.</p><a class="btn external" href="${CONFIG.urls.scholar}" onclick="save()">OPEN GOOGLE SCHOLAR →</a>${rqContinue('GOOGLE SCHOLAR ARTICLE IS ON OUR CARD')}<button class="btn secondary help-purple" onclick="showScholarHelp(this)">CAN'T FIND A USEFUL ARTICLE</button><div id="scholarHelp"></div></div>`,
+()=>`<div class="eyebrow">Don't start over</div><h1>🔗 Follow the Research Trail</h1><div class="card"><p>Under a useful Google Scholar result, find <strong>Related articles</strong>.</p><p>Open it and find one more article that could help with octopus cognition/problem solving.</p><p>✏️ Write that <strong>ARTICLE TITLE</strong> on your Quest Card.</p><div class="callout success"><strong>One useful source can lead you to more.</strong></div>${rqContinue('RELATED ARTICLE IS ON OUR CARD')}<button class="btn secondary help-purple" onclick="showRelatedHelp(this)">CAN'T FIND A RELATED ARTICLE</button><div id="relatedHelp"></div></div>`,
+()=>`<div class="eyebrow">Independent transfer</div><h1>🐙 Final Challenge</h1><div class="card"><p class="small">V1 candidate final challenge — deliberately isolated so we can revise it without changing the Quest architecture.</p><h2>How does camouflage help octopuses avoid predators?</h2><h3>Which ideas would make the strongest starting keywords?</h3>${rqmc(['octopus + camouflage + predators','how + help + avoid','octopus + help','camouflage + how'],0,`Those are the meaningful concepts in the question.`)}</div>`,
+()=>`<div class="eyebrow">Final Challenge · 2</div><h1>Build the Search</h1><div class="card"><h3>Which search would you try?</h3>${rqmc(['octopus camouflage predators','octopus AND camouflage AND predators','how does camouflage help octopuses avoid predators','octopus OR camouflage OR predators'],1,`✓ You connected different concepts with <strong>AND</strong>.`)}</div>`,
+()=>`<div class="eyebrow">Final Challenge · 3</div><h1>What kind?</h1><div class="card"><p>Your professor says the source must be an <strong>ARTICLE</strong>.</p><h3>What do you do?</h3>${rqmc(['Change the topic','Resource Type → Articles','Add ARTICLE to every keyword','Find a book instead'],1,`✓ <strong>Keywords = what about. Resource Type = what kind.</strong>`)}</div>`,
+()=>`<div class="eyebrow">Final Challenge complete</div><h1>🔒 One Last Check</h1><div class="card teacher-gate"><p><strong>Do not go hunting yet.</strong></p><p>Bring your completed <strong>Research Quest Card</strong> and your phone to Camille.</p><p>Your card should have:</p><ul class="checklist"><li>📄 Library Search article title</li><li>📚 Library Search book title</li><li>🔢 Book call number</li><li>🎓 Google Scholar article title</li><li>🔗 Related article title</li></ul><div class="callout"><strong>Camille:</strong> check the card, then tap the button below on the team's phone.</div><button class="btn" onclick="teacherUnlock()">✓ CARD CHECKED — UNLOCK HUNT</button></div>`
+];
+function rqmc(opts,c,feedback){let encoded=encodeURIComponent(feedback).replace(/'/g,'%27');return `${opts.map((o,i)=>`<button class="choice" onclick="rqAnswer(this,${i},${c},'${encoded}')">${esc(o)}</button>`).join('')}<div class="rqfb"></div>`}
+function rqAnswer(el,i,c,encodedFeedback){let feedback=decodeURIComponent(encodedFeedback),card=el.parentElement,buttons=[...card.querySelectorAll(':scope > .choice')],fb=card.querySelector('.rqfb');buttons.forEach(x=>x.classList.remove('wrong'));if(i===c){el.classList.add('correct');buttons.forEach(x=>x.disabled=true);fb.innerHTML=`<div class="callout success">${feedback}</div>${rqContinue('CONTINUE →')}`}else{el.classList.add('wrong');fb.innerHTML=`<div class="callout"><strong>Not quite yet.</strong> Think about what you practiced with the elephant example. Try again.</div>`}  speakNewFeedback(fb);
+}
+function rqContinue(label){return `<button class="btn" onclick="nextResearch()">${label}</button>`}
+
+const RESEARCH_TIMER_SECONDS=15*60;
+let researchTimerStartedAt=null;
+let researchTimerInterval=null;
+
+function startResearchTimer(){
+  if(researchTimerStartedAt===null){
+    researchTimerStartedAt=Date.now();
+  }
+  if(researchTimerInterval) clearInterval(researchTimerInterval);
+  researchTimerInterval=setInterval(updateResearchTimer,1000);
+  updateResearchTimer();
+}
+function researchSecondsLeft(){
+  if(researchTimerStartedAt===null) return RESEARCH_TIMER_SECONDS;
+  return Math.max(0,RESEARCH_TIMER_SECONDS-Math.floor((Date.now()-researchTimerStartedAt)/1000));
+}
+function researchTimerMarkup(){
+  const left=researchSecondsLeft();
+  const mins=Math.floor(left/60);
+  const secs=String(left%60).padStart(2,'0');
+  const cls=left===0?' timer-done':(left<=180?' timer-low':'');
+  const label=left===0?'Research time is up — finish your current step':'Research Quest time';
+  return `<div class="research-timer${cls}" id="researchTimer" role="timer" aria-label="${label}">
+    <span class="timer-label">⏱ ${label}</span>
+    <span class="timer-value" id="researchTimerValue">${mins}:${secs}</span>
+  </div>`;
+}
+function updateResearchTimer(){
+  const timer=document.getElementById('researchTimer');
+  const value=document.getElementById('researchTimerValue');
+  if(!timer||!value) return;
+  const left=researchSecondsLeft();
+  const mins=Math.floor(left/60);
+  const secs=String(left%60).padStart(2,'0');
+  value.textContent=`${mins}:${secs}`;
+  timer.classList.toggle('timer-low',left>0&&left<=180);
+  timer.classList.toggle('timer-done',left===0);
+  const label=left===0?'Research time is up — finish your current step':'Research Quest time';
+  const labelNode=timer.querySelector('.timer-label');
+  if(labelNode) labelNode.textContent=(left===0?'⏱ ':'⏱ ')+label;
+  timer.setAttribute('aria-label',label);
+  if(left===0&&researchTimerInterval){
+    clearInterval(researchTimerInterval);
+    researchTimerInterval=null;
+  }
+}
+function injectResearchTimer(){
+  if(researchTimerStartedAt===null) return;
+  const app=document.querySelector('#app');
+  if(!app||document.getElementById('researchTimer')){updateResearchTimer();return;}
+  app.insertAdjacentHTML('afterbegin',researchTimerMarkup());
+  updateResearchTimer();
+}
+function nextResearch(){pushHistory();state.researchStep++;save();render()}
+function copyText(t,b){navigator.clipboard?.writeText(t);b.textContent='✓ COPIED'}
+function previousResearch(){
+  stopReading(false);
+  if((state.researchStep||0)>0){
+    pushHistory();
+    state.researchStep--;
+    save();
+    render();
+    return;
+  }
+  // First Research screen: return to the Return-to-Base checkpoint,
+  // not to an arbitrary older navigation snapshot.
+  pushHistory();
+  state.phase='return';
+  state.returnReason=state.returnReason||'complete';
+  save();
+  render();
+}
+function showLibraryArticleHelp(btn){
+  const fb=document.getElementById('libraryArticleHelp');
+  if(!fb)return;
+  btn.disabled=true;
+  fb.innerHTML=`<div class="callout"><strong>ASK CAMILLE FOR HELP</strong><p>If you can't find a useful article, ask Camille. She can help you look at your search results, use the Articles filter, and choose an article to put on your Quest Card.</p></div><button class="btn secondary" onclick="nextResearch()">ARTICLE TITLE IS NOW ON OUR CARD →</button>`;
+  speakNewFeedback(fb);
+}
+function showBookHelp(btn){
+  const fb=document.getElementById('bookHelp');
+  if(!fb)return;
+  btn.disabled=true;
+  fb.innerHTML=`<div class="callout"><strong>ASK CAMILLE FOR HELP</strong><p>If you can't find a useful book or aren't sure where to find the call number, ask Camille. She can help you find the book record and locate the call number.</p></div><button class="btn secondary" onclick="nextResearch()">BOOK + CALL NUMBER ARE NOW ON OUR CARD →</button>`;
+  speakNewFeedback(fb);
+}
+function showScholarHelp(btn){
+  const fb=document.getElementById('scholarHelp');
+  if(!fb)return;
+  btn.disabled=true;
+  fb.innerHTML=`<div class="callout"><strong>ASK CAMILLE FOR HELP</strong><p>If you can't find a useful Google Scholar article, ask Camille. She can help you look at the results and choose an article to put on your Quest Card.</p></div><button class="btn secondary" onclick="nextResearch()">GOOGLE SCHOLAR ARTICLE IS NOW ON OUR CARD →</button>`;
+  speakNewFeedback(fb);
+}
+function showRelatedHelp(btn){
+  const fb=document.getElementById('relatedHelp');
+  if(!fb)return;
+  btn.disabled=true;
+  fb.innerHTML=`<div class="callout"><strong>ASK CAMILLE FOR HELP</strong><p>If you can't find Related articles or aren't sure which related article to choose, ask Camille. She can help you find the link and choose an article to put on your Quest Card.</p></div><button class="btn secondary" onclick="nextResearch()">RELATED ARTICLE IS NOW ON OUR CARD →</button>`;
+  speakNewFeedback(fb);
+}
+function research(){
+  let i=state.researchStep||0;
+  if(i>=researchScreens.length){state.phase='hunt';save();return render()}
+  if(i===0 && researchTimerStartedAt===null) startResearchTimer();
+  const timer=(researchTimerStartedAt!==null)?researchTimerMarkup():'';
+  shell(`${timer}<div class="callout" style="padding:10px 12px;margin-top:0"><button class="mini" style="width:100%;border-radius:12px" onclick="previousResearch()">← BACK TO PREVIOUS RESEARCH STEP</button></div>${researchScreens[i]()}`,45+Math.min(43,i*3.2))
+  updateResearchTimer();
+}
+function teacherUnlock(){pushHistory();state.cardChecked=true;state.phase='hunt';save();render()}
+function hunt(){let loc=CONFIG.locations[state.team];shell(`<div class="hero"><div class="octo">🔓</div><div class="eyebrow">Card verified</div><h1>OCTOPUS LOCATION UNLOCKED!</h1></div><div class="card"><h2>${state.team==='Purple'?'🟣':state.team==='Green'?'🟢':state.team==='Red'?'🔴':'🔵'} ${state.team.toUpperCase()} TEAM</h2><p class="bigline">YOUR OCTOPUS IS WAITING.</p><p>GO TO:</p><div class="location">${esc(loc)}</div><p>Find the <strong>${state.team.toUpperCase()} octopus</strong>.</p>${btn('🐙 WE FOUND IT!','foundOctopus()')}</div>`,92)}
+function foundOctopus(){pushHistory();state.huntFound=true;state.phase='photo';save();render()}
+function photo(){shell(`<div class="hero"><div class="octo">🐙</div><h1>YOU FOUND IT!</h1></div><div class="card"><p>Your octopus was <strong>3D printed right here at Lenox Library.</strong></p><div class="callout success"><p class="bigline">🖨️ YOU CAN USE OUR 3D PRINTER TOO.</p><p>Lenox's 3D printer is available to students.</p></div><h2>📸 Octopus Proof</h2><p>Take a photo of your team's octopus with your phone.</p><p><strong>Leave the octopus where you found it.</strong></p><p>Return to Camille and <strong>show her your photo.</strong></p>${btn('WE SHOWED CAMILLE →',"setState({phase:'complete'})")}</div>`,96)}
+function validFirstAidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
+function firstAidForm(){return `<div class="card first-aid-send"><div class="eyebrow">Take the help with you</div><h2>🩹 Research First Aid</h2><p>Email yourself everything you practiced today, plus quick links to Lenox Library, Ask a Librarian, and research help with Camille.</p><p class="small"><strong>Sharing one phone?</strong> Send it to one teammate, then enter the next email address. Email addresses are not saved in the Quest.</p><label for="firstAidEmail">Email address</label><input id="firstAidEmail" type="email" inputmode="email" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="name@example.com" aria-describedby="firstAidStatus"><button class="btn" id="firstAidSendBtn" onclick="sendResearchFirstAid()">EMAIL RESEARCH FIRST AID →</button><div id="firstAidStatus" class="first-aid-status" role="status" aria-live="polite"></div><div id="firstAidAgain" class="first-aid-actions hidden"></div></div>`}
+async function sendResearchFirstAid(){
+ const input=document.getElementById('firstAidEmail'),status=document.getElementById('firstAidStatus'),button=document.getElementById('firstAidSendBtn'),again=document.getElementById('firstAidAgain');
+ if(!input||!status||!button)return;
+ const email=input.value.trim();
+ if(!validFirstAidEmail(email)){status.textContent='Please enter a valid email address.';input.focus();return}
+ if(!FIRST_AID_EMAIL_ENDPOINT){status.textContent='Email delivery is not connected yet. Ask Camille to connect the Research First Aid email service before class.';return}
+ button.disabled=true;status.textContent='Sending…';
+ try{
+  const response=await fetch(FIRST_AID_EMAIL_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'send_research_first_aid',email:email})});
+  const data=await response.json();
+  if(!response.ok||!data.ok)throw new Error('Send failed');
+  input.value='';input.classList.add('hidden');button.classList.add('hidden');
+  status.textContent='✓ Sent! Research First Aid is on its way.';
+  again.classList.remove('hidden');
+  again.innerHTML=`<button class="btn secondary" onclick="sendFirstAidAgain()">SEND TO ANOTHER TEAMMATE</button><button class="btn secondary" onclick="finishFirstAid()">FINISH QUEST</button>`;
+ }catch(err){status.textContent="That didn't send. Try again or ask Camille for help."}
+ finally{button.disabled=false}
+}
+function sendFirstAidAgain(){
+ const input=document.getElementById('firstAidEmail'),status=document.getElementById('firstAidStatus'),button=document.getElementById('firstAidSendBtn'),again=document.getElementById('firstAidAgain');
+ input.value='';input.classList.remove('hidden');button.classList.remove('hidden');again.classList.add('hidden');again.innerHTML='';status.textContent='Enter the next teammate’s email address.';input.focus()
+}
+function finishFirstAid(){const box=document.querySelector('.first-aid-send');if(!box)return;box.innerHTML=`<div class="callout success"><strong>✓ QUEST COMPLETE</strong><p>Keep Research First Aid for the next time you need a place to start—or a person to ask.</p></div>`}
+function complete(){shell(`<div class="hero"><div class="octo">🐙</div><div class="eyebrow">Quest complete</div><h1>YOU DID IT.</h1></div><div class="card"><p>Today you:</p><ul class="checklist"><li>🗺️ found library services</li><li>🔎 built searches</li><li>📄 found an article</li><li>📚 found a book</li><li>🔢 found a call number</li><li>🎓 searched Google Scholar</li><li>🔗 followed Related articles</li><li>💬 found ways to get help</li><li>🖨️ discovered student 3D printing</li></ul></div><div class="callout"><p><strong>You don't need to remember everything.</strong></p><p class="bigline">You just need to know where to come back when you need it.</p></div>${firstAidForm()}<div class="footer-tools"><button class="mini" onclick="resetQuest()">↺ Reset for another class</button></div>`,100)}
+function render(){clearInterval(timerHandle);if(state.phase==='welcome')welcome();else if(state.phase==='mode')mode();else if(state.phase==='team')team();else if(state.phase==='rules')rules();else if(state.phase==='explore')explore();else if(state.phase==='return')returnBase();else if(state.phase==='research')research();else if(state.phase==='hunt')hunt();else if(state.phase==='photo')photo();else complete()}
+render();
+
+
+</script>
+</body>
+</html>
